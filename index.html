@@ -1,223 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PPSC Staff Certification Exam</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            /* Brand Palette Extraction */
-            --brand-teal: #00B2C9;
-            --brand-light-teal: #44C8CF;
-            --brand-cream: #FAF4EB;
-            --brand-lime: #B6E463;
-            --brand-green: #98C442;
-            --brand-grey: #4D4D4D;
-            --brand-black: #2B2B2B;
-            
-            /* UI Assignments */
-            --primary: var(--brand-black);      /* Headers / Dark Elements */
-            --accent: var(--brand-teal);        /* Primary Actions */
-            --bg: var(--brand-cream);           /* Page Background */
-            --card-bg: #ffffff;                 /* Card Background */
-            --text-main: var(--brand-grey);     /* Body Text */
-            --success: var(--brand-green);      /* Success State */
-            --fail: #c0392b;                    /* Error State (Standard Red) */
-        }
-
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background-color: var(--bg); 
-            color: var(--text-main); 
-            margin: 0; 
-            padding: 0; 
-            line-height: 1.6; 
-        }
-        
-        /* Typography */
-        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--primary); }
-        h1 { letter-spacing: 0.5px; }
-
-        /* Layout & Header */
-        header { 
-            background-color: var(--card-bg); 
-            padding: 2rem 1rem; 
-            text-align: center; 
-            border-bottom: 4px solid var(--brand-green); /* Subtle brand accent */
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
-        
-        .logo-img {
-            max-width: 180px; 
-            height: auto; 
-            margin-bottom: 15px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .container { max-width: 750px; margin: 50px auto; padding: 0 20px; }
-        
-        /* Premium Card Styling */
-        .card { 
-            background: var(--card-bg); 
-            padding: 40px; 
-            border-radius: 16px; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08); /* Soft, luxurious shadow */
-            transition: opacity 0.4s ease, transform 0.4s ease; 
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-        .hidden { display: none !important; }
-        
-        /* Form Elements */
-        label { font-weight: 600; display: block; margin-bottom: 10px; color: var(--primary); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
-        
-        input[type="text"] { 
-            width: 100%; 
-            padding: 15px; 
-            border: 2px solid #e0e0e0; 
-            border-radius: 8px; 
-            font-size: 1rem; 
-            box-sizing: border-box; 
-            transition: all 0.3s; 
-            font-family: 'Montserrat', sans-serif;
-            background-color: #fafafa;
-        }
-        input[type="text"]:focus { 
-            border-color: var(--brand-teal); 
-            background-color: #fff;
-            outline: none; 
-            box-shadow: 0 0 0 4px rgba(0, 178, 201, 0.1);
-        }
-        
-        /* Premium Buttons */
-        .btn { 
-            display: block; 
-            width: 100%; 
-            background: linear-gradient(135deg, var(--brand-teal), #009eb3); /* Subtle gradient */
-            color: white; 
-            padding: 16px; 
-            border: none; 
-            border-radius: 8px; 
-            font-size: 1rem; 
-            font-weight: 600; 
-            cursor: pointer; 
-            margin-top: 20px; 
-            transition: all 0.3s ease; 
-            box-shadow: 0 4px 15px rgba(0, 178, 201, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .btn:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 20px rgba(0, 178, 201, 0.4);
-        }
-        .btn:active { transform: translateY(0); }
-        
-        /* Module Buttons */
-        .btn-module { 
-            background: white; 
-            color: var(--primary);
-            border: 1px solid #eee;
-            margin-bottom: 15px; 
-            text-align: left; 
-            padding: 20px 25px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-        }
-        .btn-module:hover { 
-            background-color: var(--brand-cream); 
-            border-color: var(--brand-green);
-            transform: translateX(5px);
-            color: var(--brand-black);
-        }
-        .btn-module:after { content: '→'; font-family: sans-serif; font-size: 1.2rem; color: var(--brand-green); }
-        
-        .btn-secondary { 
-            background: transparent; 
-            border: 2px solid var(--primary); 
-            color: var(--primary); 
-            box-shadow: none; 
-        }
-        .btn-secondary:hover { background: var(--primary); color: white; }
-
-        /* Quiz Styles */
-        .quiz-header { border-bottom: 1px solid #f0f0f0; margin-bottom: 30px; padding-bottom: 15px; }
-        .question-block { margin-bottom: 40px; }
-        .question-text { font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: 20px; font-family: 'Playfair Display', serif; }
-        
-        .option-label { 
-            display: flex; 
-            align-items: center; 
-            padding: 15px 20px; 
-            background: #fff; 
-            border: 1px solid #eee; 
-            border-radius: 8px; 
-            margin-bottom: 12px; 
-            cursor: pointer; 
-            transition: all 0.2s; 
-        }
-        .option-label:hover { 
-            background: var(--brand-cream); 
-            border-color: var(--brand-green); 
-        }
-        .option-label input { 
-            margin-right: 15px; 
-            transform: scale(1.3); 
-            accent-color: var(--brand-teal);
-        }
-        
-        /* Feedback Colors */
-        .correct-answer { 
-            background-color: rgba(152, 196, 66, 0.15) !important; /* Brand Green Low Opacity */
-            border-color: var(--brand-green) !important; 
-            color: #2e4a12; 
-        }
-        .wrong-answer { 
-            background-color: #fbecec !important; 
-            border-color: var(--fail) !important; 
-            color: var(--fail); 
-        }
-        
-        .rationale { 
-            margin-top: 15px; 
-            padding: 15px; 
-            background-color: #f8f9fa; 
-            border-left: 4px solid var(--brand-teal); 
-            border-radius: 4px; 
-            font-size: 0.95rem; 
-            color: var(--brand-grey); 
-            font-style: italic;
-            display: none; 
-        }
-        
-        /* Results */
-        .score-circle { 
-            width: 140px; 
-            height: 140px; 
-            border-radius: 50%; 
-            background: var(--primary); 
-            color: var(--brand-green); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 3rem; 
-            font-weight: 700; 
-            margin: 0 auto 30px; 
-            box-shadow: 0 10px 30px rgba(43, 43, 43, 0.2);
-            font-family: 'Playfair Display', serif;
-        }
-        .pass-text { color: var(--brand-green); text-align: center; font-weight: 700; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; }
-        .fail-text { color: var(--fail); text-align: center; font-weight: 700; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; }
-
-    </style>
-</head>
 <body>
 
 <header>
@@ -230,25 +10,24 @@
     
     <div id="login-view" class="card">
         <h2 style="margin-top:0;">Coach Login</h2>
-        <p style="color:var(--brand-grey); margin-bottom:30px;">Please enter your credentials to access the testing modules.</p>
-        <label for="username">Full Name</label>
-        <input type="text" id="username" placeholder="Enter your full name">
-        <button class="btn" onclick="login()">Enter Portal</button>
+        <p style="color:var(--brand-grey); margin-bottom:30px;">Initializing system database...</p>
+        <div id="loader" style="text-align:center; margin-bottom:20px;">LOADING EXAM DATA...</div>
+        
+        <div id="login-form" class="hidden">
+            <label for="username">Full Name</label>
+            <input type="text" id="username" placeholder="Enter your full name">
+            <button class="btn" onclick="login()">Enter Portal</button>
+        </div>
     </div>
 
     <div id="dashboard-view" class="card hidden">
-        <h2 style="margin-top:0;">Testing Modules</h2>
-        <p style="margin-bottom: 30px;">Welcome, <strong id="display-name" style="color: var(--brand-teal);"></strong>. Please select a module to begin.</p>
-        
-        <button class="btn btn-module" onclick="startQuiz('Module 1')">Module 1: Principles & Mindset</button>
-        <button class="btn btn-module" onclick="startQuiz('Module 2')">Module 2: The 6-Phase Warm-Up</button>
-        <button class="btn btn-module" onclick="startQuiz('Module 3')">Module 3: Foundational Patterns</button>
-        <button class="btn btn-module" onclick="startQuiz('Module 4')">Module 4: Programming</button>
-    </div>
+        <h2 style="margin-top:0;">Active Modules</h2>
+        <p style="margin-bottom: 30px;">Select a module to begin testing.</p>
+        <div id="module-list"></div> </div>
 
     <div id="quiz-view" class="card hidden">
         <div class="quiz-header">
-            <h2 id="quiz-title" style="margin:0;">Module Name</h2>
+            <h2 id="quiz-title" style="margin:0;">Module</h2>
         </div>
         <div id="quiz-container"></div>
         <button id="submit-btn" class="btn" onclick="gradeQuiz()">Submit Assessment</button>
@@ -257,117 +36,52 @@
     <div id="results-view" class="card hidden">
         <div id="score-circle" class="score-circle">0%</div>
         <div id="result-message"></div>
-        <hr style="border:0; border-top:1px solid #eee; margin: 30px 0;">
-        <p style="text-align:center; margin-bottom:30px; color:var(--brand-grey);">Results have been logged.</p>
         <button class="btn btn-secondary" onclick="location.reload()">Return to Dashboard</button>
     </div>
 
 </div>
 
 <script>
-    // *** PASTE YOUR GOOGLE SCRIPT URL HERE ***
-    const SCRIPT_URL = "PASTE_YOUR_WEB_APP_URL_HERE";
+    // *** PASTE YOUR NEW GOOGLE SCRIPT URL HERE ***
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx7lAJd7WuZHcu6GeQUyVsMqidJiQd6mtq3Ivq9b5_hX7ljz4s_-upjGwnyflnyQqBNyQ/exec";
 
-    // --- DATA ---
-    const db = {
-        "Module 1": [
-            { q: "Which best defines 'Pain-Free' performance?", o: ["Absence of all discomfort", "Isolation exercises only", "Training without eliciting harmful pain response", "Taking time off for any ache"], a: 2, r: "Pain-free means doing no harm while training... It doesn't mean the absence of all discomfort." },
-            { q: "Which stage of motor learning is characterized by high conscious focus and inconsistency?", o: ["Associative", "Cognitive", "Autonomous", "Reflexive"], a: 1, r: "The cognitive stage requires a high level of conscious involvement... Performance is typically inconsistent." },
-            { q: "Form is defined as technique used to enhance which two factors?", o: ["Hypertrophy/Strength", "Motor Control/Recruitment", "Flexibility/Mobility", "Speed/Power"], a: 1, r: "Form refers to specific technique to enhance motor control and motor unit recruitment." },
-            { q: "What is the 'Reliable Autopilot'?", o: ["A mental checklist", "Auto-regulation", "Automatic efficient movement", "Passive recovery"], a: 2, r: "When a movement becomes second nature... it's like switching on a reliable autopilot." },
-            { q: "Which components make up 'The Pillar'?", o: ["Hips, Shoulders, Core", "Spine, Pelvis, Femur", "Chest, Back, Legs", "Diaphragm, Abs, Floor"], a: 0, r: "Treat your shoulders, hips, and core as an indivisible functional unit." },
-            { q: "Joint Centration in the hips requires which simultaneous actions?", o: ["Flexion/Extension", "Co-contraction of glutes/adductors", "Relaxation of quads", "Anterior tilt"], a: 1, r: "To stabilize your hips, create tension by co-contracting your glutes and adductors." },
-            { q: "What necessitates a 'Narrower' Neutral Zone?", o: ["Unweighted movement", "High speed throwing", "Heavy load/Fatigue", "High body awareness"], a: 2, r: "When managing heavier loads or fatigue, your neutral zone usually narrows." },
-            { q: "Up to how many degrees of L4-L5 flexion can occur in a 'neutral' kettlebell swing?", o: ["0", "10", "25", "37"], a: 3, r: "Studies show up to 37 degrees of flexion at L4-L5 segments even with a neutral spine." },
-            { q: "What creates tension during the 'Screw the Feet' cue?", o: ["Distraction", "Irradiation", "Compression", "Relaxation"], a: 1, r: "Irradiation amplifies stability by spreading tension from engaged muscles." },
-            { q: "Why use fists in the Prone Breath Corrective?", o: ["Difficulty", "Boxing simulation", "Neutral neck/relax traps", "Torque"], a: 2, r: "It places your head/neck in neutral and relaxes secondary respiratory muscles." },
-            { q: "Correct sequence for the Double Breath Technique?", o: ["Exhale-Inhale-Brace", "Inhale(3s)-Hold-Gulp(1s)-Brace", "Gulp-Inhale-Brace", "Inhale-Exhale-Brace"], a: 1, r: "1. Deep Breath 2. Hold 3. Gulp 4. Brace." },
-            { q: "Benefit of the 'Second Gulp' in Double Breath?", o: ["Clears CO2", "Relaxes jaw", "Expands diaphragm 5-15% more", "Activates SNS"], a: 2, r: "This gulping inhale expands the diaphragm by an additional 5 to 15 percent." },
-            { q: "Breathing strategy for 15 reps (Hypertrophy)?", o: ["Single hold", "Full exhale per rep", "Sip/Half breaths", "Huff breathing"], a: 2, r: "For sets beyond 8 reps, take half breaths to maintain partial tension." },
-            { q: "Why elevate legs in 90/90 Breathing?", o: ["Hamstring stretch", "Lymphatic drainage", "Core engagement", "Prevent sleep"], a: 1, r: "Elevate limbs to aid in centralized drainage of lymphatic fluid/metabolites." },
-            { q: "Purpose of Sympathetic Huff Breath?", o: ["Lower HR", "Oxygenation", "Upregulate CNS for max effort", "Loosen muscles"], a: 2, r: "Upregulates the CNS, priming the mind and body for peak exertion." },
-            { q: "Why use 3:2 Rhythmic Breathing for running?", o: ["Speed", "Alternates foot strike stress", "CO2 expulsion", "Music rhythm"], a: 1, r: "Alternates the foot that hits the ground on exhalation, equalizing load." },
-            { q: "What is 'Reactive Bracing'?", o: ["Preplanned tension", "Reflexive stiffness for speed", "Double breath", "Valsalva"], a: 1, r: "Reflexive response for fast, multi-directional movement." },
-            { q: "Tempo for Tactical Breathing (Recovery)?", o: ["4:4:4:4", "3:3:3:3", "4:4:4:1", "5:0:5:0"], a: 2, r: "Adopt a 4:4:4:1 tempo to optimize recovery between sets." },
-            { q: "When to scale pillar tension to 0%?", o: ["1RM", "Picking up object", "Yoga/No load", "Eccentric squat"], a: 2, r: "Only when the activity demands complete freedom of movement and no threat." },
-            { q: "Foundation of the Hierarchy of Recoverability?", o: ["Passive Modalities", "Active Modalities", "Training", "Sleep/Nutrition/Stress"], a: 3, r: "Sleep, Nutrition, and Stress Management are your foundation." }
-        ],
-        "Module 2": [
-            { q: "Why sequence warm-up from Phase 1 to 6?", o: ["Equipment use", "Parasympathetic to Sympathetic shift", "Muscle fatigue", "Alphabetical order"], a: 1, r: "Bring the system into balance before ramping up to perform." },
-            { q: "When to use Phase 0 (Breathing)?", o: ["Tired client", "HR > 120bpm or Acute Pain", "Leg day", "Under 30"], a: 1, r: "Elevated HR or acute pain indicate Phase 0 is necessary." },
-            { q: "Max recommended warm-up duration?", o: ["5 min", "10-12 min", "25 min", "40 min"], a: 1, r: "10 to 12 minutes is the minimum effective dose; longer has diminishing returns." },
-            { q: "Physiological goal of Foam Rolling (Phase 1)?", o: ["Break scar tissue", "Lengthen fascia", "Reduce tone via nervous system", "Bruise muscle"], a: 2, r: "Tricking the nervous system to let go of tension (tonicity)." },
-            { q: "Technique involving pinning a trigger point and moving the joint?", o: ["Oscillatory", "Neurological Trigger Point", "Smash/Scrub", "Static"], a: 1, r: "Pin and move facilitates change neurologically." },
-            { q: "Definition of Biphasic Stretching?", o: ["Two muscles", "2 minutes", "Oscillatory (30s) + Static (15-30s)", "Bouncing"], a: 2, r: "Dynamic oscillatory followed by static end-range hold." },
-            { q: "Why maintain Pillar Stability during stretching?", o: ["Professionalism", "Authentic tissue stretch vs compensation", "Calorie burn", "Prevent relaxation"], a: 1, r: "If you compensate to increase range, the stretch is dispersed away from target." },
-            { q: "What is the Motor Control Gap?", o: ["Left/Right strength", "Passive vs Active ROM difference", "Reaction time", "Warmup vs Max weight"], a: 1, r: "Difference between passive range (flexibility) and active range (mobility)." },
-            { q: "Three key focuses of Phase 3?", o: ["Speed/Power/Strength", "Sequencing/Stability/Smoothness", "Sweat/Soreness/Stamina", "Load/Volume/Intensity"], a: 1, r: "Home in on sequencing, stability, and smoothness." },
-            { q: "Volume prescription for Phase 4 (Activation)?", o: ["3x12 failure", "1x50", "3-5 sets of 3-5 reps", "5x1 max"], a: 2, r: "Activate, don't annihilate. Low reps, high tension." },
-            { q: "Why focus on Posterior Chain in Phase 4?", o: ["Show muscles", "Functional stabilizers/undertrained", "Easier to feel", "Less oxygen"], a: 1, r: "They are functional stabilizers for the primary movers." },
-            { q: "Danger of annihilating muscles in Phase 4?", o: ["Long warm-up", "Compromises stability for main lift", "Lowers HR", "Cramps"], a: 1, r: "Fatigue compromises stabilization properties needed for main lifts." },
-            { q: "How does Phase 5 act as a screen?", o: ["Video recording", "Assess readiness/pain before loading", "Coach grading", "Failure testing"], a: 1, r: "Assess movement quality/readiness to determine modifications." },
-            { q: "What are Internal Cues?", o: ["Point A to B", "Focus on muscle feel/mechanics", "Beating PR", "Music"], a: 1, r: "Mind-muscle connection is an internal cue (e.g., 'squeeze glutes')." },
-            { q: "Characteristic of Phase 6 (CNS)?", o: ["High fatigue", "Slow tempo", "Fast/Explosive/Low Volume", "Static holds"], a: 2, r: "Move with speed and precision, maximal effort, low volume." },
-            { q: "What is Post-Activation Potentiation (PAP)?", o: ["Fatigue", "Explosive move increases subsequent force", "Cool down", "Stretch reflex"], a: 1, r: "Fast feeds heavy; supercharges muscles for peak performance." },
-            { q: "Functional Carryover Window for PAP?", o: ["30s", "4-8 min", "20 min", "1 hour"], a: 1, r: "Ideal window is 4 to 8 minutes after Phase 6." },
-            { q: "Why exclude Carry from Phase 5?", o: ["Not important", "Dangerous", "Simple/Less articulation", "Equipment"], a: 2, r: "It doesn't require the same practice or joint articulation as squat/hinge." },
-            { q: "Appropriate Phase 6 exercise?", o: ["Burpees", "3 sets/3 reps Med Ball Slams", "1 mile jog", "Plank"], a: 1, r: "Non-fatiguing explosive movements." },
-            { q: "How should you feel after Phase 6?", o: ["Exhausted", "Loose", "Sharpened/Primed", "Sore"], a: 2, r: "Ramp up heart rate and sharpen attention." }
-        ],
-        "Module 3": [
-            { q: "Purpose of Hip Quadrant (Scour) Test?", o: ["Hamstring flex", "Labral tear", "Authentic squat stance", "Quad strength"], a: 2, r: "Determines stance based on hip anatomy." },
-            { q: "Butt Wink usually indicates a loss of what?", o: ["Flexibility", "Pillar Stability", "Depth", "Strength"], a: 1, r: "Often occurs when pillar stability is sacrificed." },
-            { q: "RNT correction for Knee Valgus?", o: ["Band pulling out", "Band pulling in (force reaction)", "Block squeeze", "Stretch"], a: 1, r: "Band pulls knee in, forcing glute to reflexively push out." },
-            { q: "Biomechanical distinction of Pure Hinge?", o: ["Upright torso", "Max knee bend", "Vertical shins/Max hip flexion", "Hips below knees"], a: 2, r: "Maximum hip movement with minimal knee bending." },
-            { q: "Why is 8.75-inch deadlift height arbitrary?", o: ["Too high", "Based on plate size not anatomy", "Too much momentum", "Only for sumo"], a: 1, r: "Forces lifters to conform to a standard ignoring anatomy." },
-            { q: "Base of Hinge Pyramid?", o: ["Trap Bar", "KB Swing", "Bodyweight Hinge", "Pull-Through"], a: 2, r: "Lays the groundwork for the pattern." },
-            { q: "TF Ratio < 0.8 implies what for lunge?", o: ["Upright torso", "Knee behind toe", "Forward knee/Forward torso", "Reverse lunge only"], a: 2, r: "Short tibia allows more forward knee travel/lean." },
-            { q: "Why is Walking Lunge Level 2?", o: ["Heavier", "Deceleration/Dynamic stability", "Glute isolation", "Safer"], a: 1, r: "Demands continuous motion and force absorption." },
-            { q: "Hybrid hinge-squat single leg exercise?", o: ["SL RDL", "Pistol", "Skater Squat", "Step-Up"], a: 2, r: "Blends elements of squat and hinge." },
-            { q: "Advantage of Closed-Chain pushing?", o: ["More load", "Scapular freedom", "Pec isolation", "No core"], a: 1, r: "Scapulae free to protract/retract." },
-            { q: "Shoulder Scour Test identifies?", o: ["Overhead reach", "Cuff strength", "Humeral Carrying Angle", "Grip"], a: 2, r: "Optimal arm path for pressing." },
-            { q: "Why Landmine Press before Barbell Overhead?", o: ["Heavy load", "Arced path/Joint friendly", "Two hands", "Less core"], a: 1, r: "Arced path places shoulder in safer position." },
-            { q: "Recommended Pull-to-Push Ratio?", o: ["1:1", "2:1", "3:1", "1:2"], a: 2, r: "Counteracts sedentary posture." },
-            { q: "Limited Thoracic Rotation causes shoulder to?", o: ["Pull harder", "Dump forward/Shrug", "Drop hips", "Fail grip"], a: 1, r: "Shoulders compensate for lack of spinal movement." },
-            { q: "Foundational Pull Screen tool?", o: ["Cheat row", "Inverted Row", "No equipment", "Grip test"], a: 1, r: "Integrates pillar with scapular mechanics." },
-            { q: "Grip strength correlates to?", o: ["Bench max", "Flexibility", "Longevity/Health span", "Speed"], a: 2, r: "Direct biomarker for aging and health." },
-            { q: "Why avoid straps on carries?", o: ["Cost", "Disrupts Irradiation", "Feels heavy", "Circulation"], a: 1, r: "Short-circuits the stability feedback loop." },
-            { q: "Level 2 Carry Standard?", o: ["50% BW", "75% BW", "100% BW", "200% BW"], a: 2, r: "Key performance baseline for fitness." },
-            { q: "Highest anti-lateral flexion demand carry?", o: ["Bilateral", "Unilateral (Suitcase)", "Front Rack", "Trap Bar"], a: 1, r: "Unilateral loads challenge lateral core most." },
-            { q: "Why Overhead Carry at top of pyramid?", o: ["Light weight", "Max stability demand", "Easy", "Biceps"], a: 1, r: "Load furthest from center of mass." }
-        ],
-        "Module 4": [
-            { q: "NOT one of the 6 Physical Characteristics?", o: ["Strength", "Flexibility", "Hypertrophy", "Power"], a: 1, r: "Mobility is the characteristic, not passive flexibility." },
-            { q: "Goal of Mechanical Priming?", o: ["Exhaustion", "Blood flow/Stability/High Reps", "CNS stimulation", "1RM"], a: 1, r: "Drive blood flow and activate weak links via high reps." },
-            { q: "Where does Peak Intensity occur in Wave Loading?", o: ["Warm-up", "KPI", "Finisher", "Cool-down"], a: 1, r: "Peak occurs at the KPI lift." },
-            { q: "Why is Carry not a KPI?", o: ["Not foundational", "Dangerous", "Grip/Core limited", "No muscle"], a: 2, r: "Limited by endurance, not max output." },
-            { q: "Pull-to-Push Ratio?", o: ["1:1", "2:1", "3:1", "1:2"], a: 2, r: "Restore balance and reverse forward patterns." },
-            { q: "Why 2:1 Horizontal to Vertical Pulling?", o: ["Cuff danger", "Scapular retraction vs Internal rotation", "More weight", "Lats"], a: 1, r: "Vertical pulling can encourage internal rotation if overused." },
-            { q: "Pattern frequency per week?", o: ["1x", "2x minimum", "3x", "Only when fresh"], a: 1, r: "Train every pattern at least twice per week." },
-            { q: "Volume for Pump Accessories?", o: ["1-5", "6-8", "15-25", "50+"], a: 2, r: "Build tissue tolerance and drive hypertrophy." },
-            { q: "KPI Intensity?", o: ["Failure", "1-2 RIR (Technical Limit)", "50%", "Heavy as possible"], a: 1, r: "Train hard but avoid technique breakdown." },
-            { q: "Cardio vs Conditioning?", o: ["Treadmill vs Weights", "Aerobic vs Anaerobic", "Athletes vs Gen Pop", "None"], a: 1, r: "Cardio is sustainable; Conditioning is unsustainable/high intensity." },
-            { q: "Purpose of Filler Sets?", o: ["HR up", "Mobility/Positioning without fatigue", "Calorie burn", "Boredom"], a: 1, r: "Reinforce quality without adding fatigue." },
-            { q: "Purpose of Week 1 in Block?", o: ["PR", "Exposure/Deload", "Max Volume", "Testing"], a: 1, r: "Learn movements, set baseline, lower intensity." },
-            { q: "Cool-Down Sequence?", o: ["Stretch-Roll-Breathe", "Breathe-Roll-Stretch", "Roll-Stretch-Breathe", "Stretch"], a: 1, r: "Calm CNS (Breathe) -> Reduce Tension (Roll) -> Length (Stretch)." },
-            { q: "Foam Rolling in Cool-Down vs Warm-Up?", o: ["Fast", "Trigger point", "Slow/Global", "Avoid"], a: 2, r: "Slow passes to reduce residual tension." },
-            { q: "Cool-Down purpose?", o: ["Flexibility", "Shift to Parasympathetic", "Volume", "Lactic acid"], a: 1, r: "Calm nervous system for recovery." },
-            { q: "Example of Neurological Primer?", o: ["Band Pull-Apart", "Box Jumps", "Goblet Squats", "Elliptical"], a: 1, r: "Explosive, high speed, low rep." },
-            { q: "Why rarely program 1RM?", o: ["Not valid", "Risk/Lack of motor control", "Time", "Powerlifters only"], a: 1, r: "Most lack skill to express max strength safely." },
-            { q: "4-Day Split structure?", o: ["Full Body", "Body Part", "Upper/Lower", "Push/Pull/Legs"], a: 2, r: "Allows focus and recovery." },
-            { q: "Definition of Mechanical Primer?", o: ["Low rep", "High rep/Constant tension", "Stretch", "Machine"], a: 1, r: "Hypertrophy style programming to prep joints." },
-            { q: "Most important factor in Frequency?", o: ["Goal", "Preference", "Schedule consistency", "Research"], a: 2, r: "The schedule you can stick to 100% of the time." }
-        ]
-    };
-
+    let db = {}; // Will be populated from Google Sheet
     let user = "";
     let activeModule = "";
+
+    // Initialize: Fetch Questions immediately on load
+    window.onload = function() {
+        fetch(SCRIPT_URL + "?action=getQuestions")
+        .then(response => response.json())
+        .then(data => {
+            db = data;
+            document.getElementById("loader").classList.add("hidden");
+            document.getElementById("login-form").classList.remove("hidden");
+            generateModuleButtons();
+        })
+        .catch(error => {
+            document.getElementById("loader").innerText = "Error loading database. Check internet connection.";
+        });
+    };
+
+    function generateModuleButtons() {
+        const list = document.getElementById("module-list");
+        list.innerHTML = "";
+        
+        // Dynamically create buttons based on what is in the Sheet
+        Object.keys(db).forEach(modName => {
+            const btn = document.createElement("button");
+            btn.className = "btn btn-module";
+            btn.innerHTML = `${modName}`;
+            btn.onclick = () => startQuiz(modName);
+            list.appendChild(btn);
+        });
+    }
 
     function login() {
         const input = document.getElementById("username").value;
         if (!input.trim()) return alert("Please enter your name");
         user = input;
-        document.getElementById("display-name").innerText = user;
         switchView("dashboard-view");
     }
 
@@ -377,7 +91,14 @@
         const container = document.getElementById("quiz-container");
         container.innerHTML = "";
 
-        db[moduleName].forEach((q, idx) => {
+        const questions = db[moduleName];
+        
+        if(!questions || questions.length === 0) {
+            container.innerHTML = "<p>No questions found for this module.</p>";
+            return;
+        }
+
+        questions.forEach((q, idx) => {
             let html = `
                 <div class="question-block" id="q${idx}">
                     <div class="question-text">${idx + 1}. ${q.q}</div>
@@ -413,7 +134,6 @@
             const val = parseInt(selected.value);
             const label = document.getElementById(`lbl-${idx}-${val}`);
             
-            // UI Feedback
             if (val === q.a) {
                 score++;
                 label.classList.add("correct-answer");
@@ -427,17 +147,15 @@
 
         if (!allAnswered) return alert("Please answer all questions before submitting.");
 
-        // Calculate
         const finalScore = Math.round((score / questions.length) * 100);
         document.getElementById("score-circle").innerText = finalScore + "%";
         document.getElementById("submit-btn").style.display = "none";
 
-        // Feedback Text
         const msgDiv = document.getElementById("result-message");
         if (finalScore >= 80) {
-            msgDiv.innerHTML = `<div class="pass-text">PASSED</div><p style="text-align:center">Excellent work. Mastery demonstrated.</p>`;
+            msgDiv.innerHTML = `<div class="pass-text">PASSED</div>`;
         } else {
-            msgDiv.innerHTML = `<div class="fail-text">NEEDS REVIEW</div><p style="text-align:center">Please review the rationales. 80% required.</p>`;
+            msgDiv.innerHTML = `<div class="fail-text">NEEDS REVIEW</div>`;
         }
 
         // Send to Database
@@ -453,14 +171,9 @@
             mode: "no-cors",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
-        }).then(() => {
-            console.log("Logged to sheet");
-        }).catch(err => console.error(err));
+        }).then(() => console.log("Logged")).catch(err => console.error(err));
 
-        // Show Results after short delay
-        setTimeout(() => {
-            switchView("results-view");
-        }, 1500);
+        setTimeout(() => switchView("results-view"), 1500);
     }
 
     function switchView(viewId) {
@@ -468,8 +181,6 @@
         document.getElementById(viewId).classList.remove("hidden");
         window.scrollTo(0,0);
     }
-
 </script>
-
 </body>
 </html>
