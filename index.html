@@ -4,83 +4,241 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PPSC Staff Certification Exam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #2c3e50; /* Dark Blue */
-            --accent: #c0392b;  /* Rusin Red */
-            --bg: #f4f7f6;
-            --white: #ffffff;
-            --success: #27ae60;
+            /* Brand Palette Extraction */
+            --brand-teal: #00B2C9;
+            --brand-light-teal: #44C8CF;
+            --brand-cream: #FAF4EB;
+            --brand-lime: #B6E463;
+            --brand-green: #98C442;
+            --brand-grey: #4D4D4D;
+            --brand-black: #2B2B2B;
+            
+            /* UI Assignments */
+            --primary: var(--brand-black);      /* Headers / Dark Elements */
+            --accent: var(--brand-teal);        /* Primary Actions */
+            --bg: var(--brand-cream);           /* Page Background */
+            --card-bg: #ffffff;                 /* Card Background */
+            --text-main: var(--brand-grey);     /* Body Text */
+            --success: var(--brand-green);      /* Success State */
+            --fail: #c0392b;                    /* Error State (Standard Red) */
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg); color: #333; margin: 0; padding: 0; line-height: 1.6; }
+
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text-main); 
+            margin: 0; 
+            padding: 0; 
+            line-height: 1.6; 
+        }
         
-        /* Layout */
-        header { background-color: var(--primary); color: var(--white); padding: 1.5rem 1rem; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        header h1 { margin: 0; font-size: 1.8rem; letter-spacing: 1px; }
-        header p { margin: 5px 0 0; font-size: 0.9rem; opacity: 0.8; }
+        /* Typography */
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--primary); }
+        h1 { letter-spacing: 0.5px; }
+
+        /* Layout & Header */
+        header { 
+            background-color: var(--card-bg); 
+            padding: 2rem 1rem; 
+            text-align: center; 
+            border-bottom: 4px solid var(--brand-green); /* Subtle brand accent */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
         
-        .container { max-width: 700px; margin: 30px auto; padding: 0 20px; }
+        .logo-img {
+            max-width: 180px; 
+            height: auto; 
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container { max-width: 750px; margin: 50px auto; padding: 0 20px; }
         
-        /* Cards */
-        .card { background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: opacity 0.3s ease; }
+        /* Premium Card Styling */
+        .card { 
+            background: var(--card-bg); 
+            padding: 40px; 
+            border-radius: 16px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08); /* Soft, luxurious shadow */
+            transition: opacity 0.4s ease, transform 0.4s ease; 
+            border: 1px solid rgba(0,0,0,0.03);
+        }
         .hidden { display: none !important; }
         
         /* Form Elements */
-        label { font-weight: 600; display: block; margin-bottom: 8px; color: var(--primary); }
-        input[type="text"] { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 6px; font-size: 1rem; box-sizing: border-box; transition: border 0.3s; }
-        input[type="text"]:focus { border-color: var(--primary); outline: none; }
+        label { font-weight: 600; display: block; margin-bottom: 10px; color: var(--primary); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
         
-        /* Buttons */
-        .btn { display: block; width: 100%; background-color: var(--accent); color: white; padding: 14px; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 15px; transition: transform 0.1s, background 0.2s; }
-        .btn:hover { background-color: #a93226; }
-        .btn:active { transform: scale(0.98); }
-        .btn-module { background-color: var(--primary); margin-bottom: 12px; text-align: left; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .btn-module:after { content: '→'; font-weight: bold; opacity: 0.5; }
-        .btn-secondary { background-color: #7f8c8d; }
+        input[type="text"] { 
+            width: 100%; 
+            padding: 15px; 
+            border: 2px solid #e0e0e0; 
+            border-radius: 8px; 
+            font-size: 1rem; 
+            box-sizing: border-box; 
+            transition: all 0.3s; 
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fafafa;
+        }
+        input[type="text"]:focus { 
+            border-color: var(--brand-teal); 
+            background-color: #fff;
+            outline: none; 
+            box-shadow: 0 0 0 4px rgba(0, 178, 201, 0.1);
+        }
+        
+        /* Premium Buttons */
+        .btn { 
+            display: block; 
+            width: 100%; 
+            background: linear-gradient(135deg, var(--brand-teal), #009eb3); /* Subtle gradient */
+            color: white; 
+            padding: 16px; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 1rem; 
+            font-weight: 600; 
+            cursor: pointer; 
+            margin-top: 20px; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 15px rgba(0, 178, 201, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 20px rgba(0, 178, 201, 0.4);
+        }
+        .btn:active { transform: translateY(0); }
+        
+        /* Module Buttons */
+        .btn-module { 
+            background: white; 
+            color: var(--primary);
+            border: 1px solid #eee;
+            margin-bottom: 15px; 
+            text-align: left; 
+            padding: 20px 25px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        .btn-module:hover { 
+            background-color: var(--brand-cream); 
+            border-color: var(--brand-green);
+            transform: translateX(5px);
+            color: var(--brand-black);
+        }
+        .btn-module:after { content: '→'; font-family: sans-serif; font-size: 1.2rem; color: var(--brand-green); }
+        
+        .btn-secondary { 
+            background: transparent; 
+            border: 2px solid var(--primary); 
+            color: var(--primary); 
+            box-shadow: none; 
+        }
+        .btn-secondary:hover { background: var(--primary); color: white; }
 
         /* Quiz Styles */
-        .quiz-header { border-bottom: 2px solid #f0f0f0; margin-bottom: 20px; padding-bottom: 10px; }
-        .question-block { margin-bottom: 35px; }
-        .question-text { font-size: 1.15rem; font-weight: 700; color: var(--primary); margin-bottom: 15px; }
+        .quiz-header { border-bottom: 1px solid #f0f0f0; margin-bottom: 30px; padding-bottom: 15px; }
+        .question-block { margin-bottom: 40px; }
+        .question-text { font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: 20px; font-family: 'Playfair Display', serif; }
         
-        .option-label { display: flex; align-items: center; padding: 12px 15px; background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 6px; margin-bottom: 8px; cursor: pointer; transition: all 0.2s; }
-        .option-label:hover { background: #eef2f3; border-color: #bdc3c7; }
-        .option-label input { margin-right: 12px; transform: scale(1.2); }
+        .option-label { 
+            display: flex; 
+            align-items: center; 
+            padding: 15px 20px; 
+            background: #fff; 
+            border: 1px solid #eee; 
+            border-radius: 8px; 
+            margin-bottom: 12px; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+        }
+        .option-label:hover { 
+            background: var(--brand-cream); 
+            border-color: var(--brand-green); 
+        }
+        .option-label input { 
+            margin-right: 15px; 
+            transform: scale(1.3); 
+            accent-color: var(--brand-teal);
+        }
         
         /* Feedback Colors */
-        .correct-answer { background-color: #d4edda !important; border-color: var(--success) !important; color: #155724; }
-        .wrong-answer { background-color: #f8d7da !important; border-color: var(--accent) !important; color: #721c24; }
+        .correct-answer { 
+            background-color: rgba(152, 196, 66, 0.15) !important; /* Brand Green Low Opacity */
+            border-color: var(--brand-green) !important; 
+            color: #2e4a12; 
+        }
+        .wrong-answer { 
+            background-color: #fbecec !important; 
+            border-color: var(--fail) !important; 
+            color: var(--fail); 
+        }
         
-        .rationale { margin-top: 10px; padding: 12px; background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px; font-size: 0.9rem; color: #856404; display: none; }
+        .rationale { 
+            margin-top: 15px; 
+            padding: 15px; 
+            background-color: #f8f9fa; 
+            border-left: 4px solid var(--brand-teal); 
+            border-radius: 4px; 
+            font-size: 0.95rem; 
+            color: var(--brand-grey); 
+            font-style: italic;
+            display: none; 
+        }
         
         /* Results */
-        .score-circle { width: 120px; height: 120px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: bold; margin: 0 auto 20px; }
-        .pass-text { color: var(--success); text-align: center; font-weight: bold; font-size: 1.2rem; }
-        .fail-text { color: var(--accent); text-align: center; font-weight: bold; font-size: 1.2rem; }
+        .score-circle { 
+            width: 140px; 
+            height: 140px; 
+            border-radius: 50%; 
+            background: var(--primary); 
+            color: var(--brand-green); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 3rem; 
+            font-weight: 700; 
+            margin: 0 auto 30px; 
+            box-shadow: 0 10px 30px rgba(43, 43, 43, 0.2);
+            font-family: 'Playfair Display', serif;
+        }
+        .pass-text { color: var(--brand-green); text-align: center; font-weight: 700; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; }
+        .fail-text { color: var(--fail); text-align: center; font-weight: 700; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; }
 
     </style>
 </head>
 <body>
 
 <header>
-    <h1>PPSC Staff Exam</h1>
-    <p>Pain-Free Performance Training System</p>
+    <img src="The U Transparent - Trademark.png" alt="Company Logo" class="logo-img">
+    <h1 style="font-size: 1.5rem; margin-top: 0;">Staff Certification Portal</h1>
+    <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: var(--brand-grey);">Pain-Free Performance System</p>
 </header>
 
 <div class="container">
     
     <div id="login-view" class="card">
-        <h2 style="margin-top:0;">Staff Login</h2>
-        <p style="color:#666; margin-bottom:20px;">Please enter your full name to begin the assessment.</p>
+        <h2 style="margin-top:0;">Coach Login</h2>
+        <p style="color:var(--brand-grey); margin-bottom:30px;">Please enter your credentials to access the testing modules.</p>
         <label for="username">Full Name</label>
-        <input type="text" id="username" placeholder="e.g. John Doe">
-        <button class="btn" onclick="login()">Start Assessment</button>
+        <input type="text" id="username" placeholder="Enter your full name">
+        <button class="btn" onclick="login()">Enter Portal</button>
     </div>
 
     <div id="dashboard-view" class="card hidden">
-        <h2 style="margin-top:0;">Select a Module</h2>
-        <p>Welcome, <strong id="display-name"></strong>. Choose a section to test.</p>
-        <hr style="border:0; border-top:1px solid #eee; margin: 20px 0;">
+        <h2 style="margin-top:0;">Testing Modules</h2>
+        <p style="margin-bottom: 30px;">Welcome, <strong id="display-name" style="color: var(--brand-teal);"></strong>. Please select a module to begin.</p>
         
         <button class="btn btn-module" onclick="startQuiz('Module 1')">Module 1: Principles & Mindset</button>
         <button class="btn btn-module" onclick="startQuiz('Module 2')">Module 2: The 6-Phase Warm-Up</button>
@@ -93,21 +251,22 @@
             <h2 id="quiz-title" style="margin:0;">Module Name</h2>
         </div>
         <div id="quiz-container"></div>
-        <button id="submit-btn" class="btn" onclick="gradeQuiz()">Submit Answers</button>
+        <button id="submit-btn" class="btn" onclick="gradeQuiz()">Submit Assessment</button>
     </div>
 
     <div id="results-view" class="card hidden">
         <div id="score-circle" class="score-circle">0%</div>
         <div id="result-message"></div>
-        <p style="text-align:center; margin-top:20px; color:#666;">Results have been logged to the database.</p>
-        <button class="btn btn-secondary" onclick="location.reload()">Back to Dashboard</button>
+        <hr style="border:0; border-top:1px solid #eee; margin: 30px 0;">
+        <p style="text-align:center; margin-bottom:30px; color:var(--brand-grey);">Results have been logged.</p>
+        <button class="btn btn-secondary" onclick="location.reload()">Return to Dashboard</button>
     </div>
 
 </div>
 
 <script>
     // *** PASTE YOUR GOOGLE SCRIPT URL HERE ***
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxmSAMG7_akZB_-iL3iU6nmq4TXGlssk7r_TJbVt3ldqZNt3kdF0Qhtiwy7CRfyk-Rnew/exec";
+    const SCRIPT_URL = "PASTE_YOUR_WEB_APP_URL_HERE";
 
     // --- DATA ---
     const db = {
